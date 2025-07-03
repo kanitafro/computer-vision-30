@@ -1,6 +1,6 @@
 import os
 import cv2
-from helper_functions import show_coordinates
+from helper_functions1 import show_coordinates
 
 ### Original image ###
 img = cv2.imread('image3.jpg')
