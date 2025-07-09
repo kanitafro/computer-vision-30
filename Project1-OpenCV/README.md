@@ -19,7 +19,7 @@ First, install OpenCV locally by running `pip install opencv-python` on the term
 
 ### Blurring
 
-Important note about specifying the kernel size: cv2.GaussianBlur() requires the kernel size (k_size) to be a positive odd number (e.g., 3, 5, 7, etc.).  
+Important note about specifying the kernel size: cv2.GaussianBlur() and cv2.medianBlur() require the kernel size (k_size) to be a positive odd number (e.g., 3, 5, 7, etc.). For cv2.blur() kernel size can be any integer, even though it's a standard to use odd integer.
 Visual comparison between `blur`, `GaussianBlur`, and `medianBlur`. Kernel size (k_size) is set to 33, the third parameter in gaussian blur is set to 5. These are the outputs with the given parameters:
 
 #### **Original vs blur**  
