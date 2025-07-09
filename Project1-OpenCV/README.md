@@ -3,6 +3,9 @@
 Learning basic operations with images and video using the ***opencv-python*** library.
 Based on [OpenCV tutorial for beginners | FULL COURSE in 3 hours with Python](https://youtu.be/eDIj5LuIL4A?si=gaCR-mjeaJiWvLNn) by *Computer vision engineer*. The video is used as a guideline to learn OpenCV, not copy and paste everything mentioned in the video. ***Will later go through the ["OpenCV bootcamp"](https://opencv.org/university/free-opencv-course/?utm_source=opcvu&utm_medium=menu&utm_campaign=obc) course that OpenCV offers for free and add the work here***.
 
+In `demo` folder you can find all images that are saved by running the respective Python files (as listed in the README of `demo`).
+The folder `fig` stores images used in this README, they're not obtained by running any code.
+
 ### Prerequisites for Running the Code
 
 First, install OpenCV locally by running `pip install opencv-python` on the terminal. The library that's used in the code is called **cv2**, thus when importing libraries, indicate `import cv2` at the top.
@@ -24,12 +27,12 @@ Visual comparison between `blur`, `GaussianBlur`, and `medianBlur`. Kernel size 
 
 #### **Original vs blur**  
 
-![Original image vs blurred with normal blur](./demo/blurring_normalvblur.png)
+![Original image vs blurred with normal blur](./fig/blurring_normalvblur.png)
 
 #### **blur vs GaussianBlur**  
 
-![Image blurred with normal blur vs with gaussian blur](./demo/blurring_blurvgaussian.png)
+![Image blurred with normal blur vs with gaussian blur](./fig/blurring_blurvgaussian.png)
 
 #### **blur vs medianBlur**  
 
-![Image blurred with normal blur vs with median blur](./demo/blurring_blurvmedian.png)
+![Image blurred with normal blur vs with median blur](./fig/blurring_blurvmedian.png)
