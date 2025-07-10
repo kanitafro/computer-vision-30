@@ -36,3 +36,47 @@ Visual comparison between `blur`, `GaussianBlur`, and `medianBlur`. Kernel size 
 #### **blur vs medianBlur**  
 
 ![Image blurred with normal blur vs with median blur](./fig/blurring_blurvmedian.png)
+
+### Threshold
+
+The image used here was `handwritten.png`. The provided code has a commented region where basic threshold was used and here's what it looks like with different values of threshold (80, 100, 127):
+
+![Implementing basic threshold](./fig/thresh80_100_127.png)
+
+Since the basic threshold doesn't do well on slight lighting changes in the image, adaptive threshold is more suitable for this. The `adaptiveThreshold` function is used to apply adaptive thresholding to an image, which is particularly useful when lighting conditions vary across the image like we have in this case. Explanation of the parameters:
+
+             cv2.adaptiveThreshold(src, maxValue, adaptiveMethod, thresholdType, blockSize, C)
+
+* `src` is the input image in grayscale (it has to be in a singe channel)
+  
+* `maxValue` is the value assigned to pixels that satisfy the threshold condition (e.g., if a pixel value is above the threshold, it will be set to maxValue.
+  
+* `adaptiveMethod`: the method used was Adaptive Threshold Gaussian. There are 2 types of adaptive methods:
+  1. `cv2.ADAPTIVE_THRESH_MEAN_C`: The threshold is the mean of the neighborhood area
+  2. `cv2.ADAPTIVE_THRESH_GAUSSIAN_C`: The threshold is a weighted sum of the neighborhood values, where weights are from a Gaussian window
+  
+* `thresholdType` is the type of thresholding to apply. Common options:
+  1. cv2.THRESH_BINARY: dst(x, y) = maxValue if src(x, y)>T(x, y) else 0
+  2. cv2.THRESH_BINARY_INV: dst(x, y) = 0 if src(x, y)>T(x, y) else maxValue  
+
+  Here, T(x, y) is the dynamically computed threshold for the pixel.
+
+* `blockSize` is the size of the neighborhood (odd integer > 1) used to compute the threshold for each pixel. A larger block size means the threshold is computed over a larger area, which can smooth out local variations but may lose finer details.
+* `C` is a constant subtracted from the computed threshold (can be positive, negative, or zero). This is used to fine-tune the threshold value. A higher C makes the threshold more "lenient," resulting in more pixels being classified as foreground.
+
+#### **Higher C, different block sizes**
+
+* thresh1 (blockSize=81) computes the threshold over a much larger neighborhood, making it less sensitive to local variations but potentially missing finer details. 
+* thresh2 (blockSize=21) is more sensitive to local changes but may introduce more noise.
+
+![Comparison between parameters](./fig/threshold_thresh1_2.png)
+
+#### **Low C, different block sizes**
+
+Since C is much smaller here, the threshold is less adjusted, resulting in a stricter binarization.
+
+* thresh3 (blockSize=31) is smoother
+* thresh4 (blockSize=11) preserves more details but also retains more noise.
+  
+![Comparison between parameters](./fig/threshold_thresh3_4.png)
+
