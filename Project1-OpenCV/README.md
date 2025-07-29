@@ -19,7 +19,7 @@ First, install OpenCV locally by running `pip install opencv-python` on the term
 * `blurring.py` works with 3 basic blur functions—blur, gaussian blurr, and median blur. The demo is done on *tall_flower.py* and it isn't set to save any additional files when running the code.
 
 * `edge_detection.py` uses *sophia_katseye.jpg* as the demo image.
-
+---
 ## Notes and Analysis
 
 ### Blurring
@@ -39,6 +39,7 @@ Visual comparison between `blur`, `GaussianBlur`, and `medianBlur`. Kernel size 
 
 ![Image blurred with normal blur vs with median blur](./fig/blurring_blurvmedian.png)
 
+---
 ### Threshold
 
 The image used here was `handwritten.png`. The provided code has a commented region where basic threshold was used and here's what it looks like with different values of threshold (80, 100, 127):
@@ -82,7 +83,7 @@ Since C is much smaller here, the threshold is less adjusted, resulting in a str
   
 ![Comparison between parameters](./fig/threshold_thresh3_4.png)
 
-
+---
 ### Edge Detection
 
 #### Comparing the original with examples of higher minVal
@@ -96,3 +97,8 @@ Since C is much smaller here, the threshold is less adjusted, resulting in a str
 * Example 3: minVal = 10, maxVal = 100
 ![Comparison between parameters 3, 4, and 5](./fig/sophia_edges_3_5.png)
 
+#### Dilate vs Erode
+
+Function `cv2.dilate` makes the edges thicker and `cv.erode` makes edges thinner. The functions use Numpy ones matrices where the default value is `np.ones(1, 1)` and by dilating (eroding) with `np.ones(x, x)` the edges become thicker (thinner) by x times. Blow is the example of using x=3 for both dilate and erode. Dilate uses the original image and erode uses the dilated image, thus the dimensions go back to (1, 1).
+
+![Dilate and erode functions](./fig/sophia_dilate_erode.png)
