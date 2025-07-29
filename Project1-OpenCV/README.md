@@ -80,3 +80,17 @@ Since C is much smaller here, the threshold is less adjusted, resulting in a str
   
 ![Comparison between parameters](./fig/threshold_thresh3_4.png)
 
+
+### Edge Detection
+
+#### Comparing the original with examples of higher minVal
+* Example 1: minVal = 100, maxVal = 200  
+* Example 2: minVal = 200, maxVal = 500
+![Comparison between parameters 1 and 2](./fig/sophia_edges_1_2.png)
+
+#### Comparing the original with examples of lower minVal
+* Example 1: minVal = 20, maxVal = 40  
+* Example 2: minVal = 20, maxVal = 400
+* Example 3: minVal = 10, maxVal = 100
+![Comparison between parameters 3, 4, and 5](./fig/sophia_edges_3_5.png)
+
