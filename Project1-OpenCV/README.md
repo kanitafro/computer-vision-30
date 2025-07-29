@@ -18,6 +18,8 @@ First, install OpenCV locally by running `pip install opencv-python` on the term
 
 * `blurring.py` works with 3 basic blur functions—blur, gaussian blurr, and median blur. The demo is done on *tall_flower.py* and it isn't set to save any additional files when running the code.
 
+* `edge_detection.py` uses *sophia_katseye.jpg* as the demo image.
+
 ## Notes and Analysis
 
 ### Blurring
