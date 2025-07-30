@@ -18,7 +18,12 @@ First, install OpenCV locally by running `pip install opencv-python` on the term
 
 * `blurring.py` works with 3 basic blur functions—blur, gaussian blurr, and median blur. The demo is done on *tall_flower.py* and it isn't set to save any additional files when running the code.
 
-* `edge_detection.py` uses *sophia_katseye.jpg* as the demo image.
+* `threshold.py` uses *handwritten.png* as demo image and shows differences between using regular thresshold and adaptive threshold.
+
+* `edge_detection.py` detects edges in an image and shows how to manipulate the thickness (and with it, their clarity) of the edges using *sophia_katseye.jpg* as the demo image.
+
+* `drawing.py` shows how to draw a line, a rectangle, a circle, and how to put text on *whiteboard.png* demo image taken from Google with a search for "whiteboard". 
+
 ---
 ## Notes and Analysis
 
