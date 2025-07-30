@@ -144,6 +144,9 @@ At first, when making bounding boxes, I made a mistake to which coordinates of t
 This is how the bounding boxes turned out:
 ![Flock bounding boxes incorrect placement](./fig/flock_boundingboxes_incorrect.png)
 
-Then I changed the last 2 parameters to w (width) and h (height) and added them up for the 
+Then I changed the last 2 parameters to w (width) and h (height) and added them up for the boxes to fit properly.
 
+      x1, y1, w, h = cv2.boundingRect(cnt)
+      cv2.rectangle(img, (x1, y1), (x1 + w, y1 + h), (0, 255, 0), 2)
+As you can see, the boxes fit perfectly now:
 ![Flock bounding boxes correct placement](./fig/flock_boundingboxes.png)
