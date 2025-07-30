@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 def show_coordinates(event, x, y, flags, param):
     """
@@ -78,4 +79,40 @@ def setup_mouse_callback(window_name, image):
     cv2.setMouseCallback(window_name, mouse_callback)
     
     # Display the initial image
+    cv2.imshow(window_name, display_image)
+
+def setup_mouse_callback_binary(window_name, image):
+    """
+    Set up mouse callback for GRAYSCALE/BINARY images (1-channel).
+    Displays coordinates and intensity value in white footer with black text.
+    """
+    # Convert to 3-channel for consistent display with footer
+    if len(image.shape) == 2:
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
+    
+    # Create white footer area (50 pixels tall)
+    footer_height = 50
+    footer = np.full((footer_height, image.shape[1], 3), 255, dtype=np.uint8)
+    
+    display_image = np.vstack((image, footer))
+    
+    def mouse_callback(event, x, y, flags, param):
+        nonlocal display_image, image
+        footer.fill(255)
+        
+        if 0 <= x < image.shape[1] and 0 <= y < image.shape[0]:
+            # Get intensity value (all channels will be same in grayscale)
+            intensity = image[y, x][0]  # Just need first channel
+            coord_text = f'X: {x}, Y: {y}'
+            intensity_text = f'Intensity: {intensity}'
+            
+            cv2.putText(footer, coord_text, (10, 20), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
+            cv2.putText(footer, intensity_text, (10, 45), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
+        
+        display_image = np.vstack((image, footer))
+        cv2.imshow(window_name, display_image)
+    
+    cv2.setMouseCallback(window_name, mouse_callback)
     cv2.imshow(window_name, display_image)
