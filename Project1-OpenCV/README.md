@@ -107,3 +107,43 @@ Since C is much smaller here, the threshold is less adjusted, resulting in a str
 Function `cv2.dilate` makes the edges thicker and `cv.erode` makes edges thinner. The functions use Numpy ones matrices where the default value is `np.ones(1, 1)` and by dilating (eroding) with `np.ones(x, x)` the edges become thicker (thinner) by x times. Blow is the example of using x=3 for both dilate and erode. Dilate uses the original image and erode uses the dilated image, thus the dimensions go back to (1, 1).
 
 ![Dilate and erode functions](./fig/sophia_dilate_erode.png)
+
+---
+### Drawing
+
+#### Line
+Drawing the line requires the x,y coordinates of the starting point, then the coordn+inates of the end point, color, and the thickness of the line. This is a green line starting at point (213, 481) and ending at (786, 132) with thickness 3.
+ 
+      img_line = cv2.line(img, (213, 481), (786, 132), (0, 255, 0), 3)
+
+
+#### Rectangle
+The rectangle requires the coordinates of the top-left corner and bottom-right corner, the collor of the edge, and thickness of the edge. If you want to fill the rectangle with the provided color then an additional parameter is required—just put in -1. This will be a blue rectangle whose upper left corner is at (213, 481) and bottom right corner at (786, 132) with thickness 3.
+
+      img_rectangle = cv2.rectangle(img, (213, 481), (786, 132), (255, 0, 0), 3) # last parameter is -1 if you want to fill it
+
+#### Circle
+Drawing a circle requires the coordinates of its center and length of its radius in pixels, as well as the color of the circle. This will be a filled red circle whose center is in point (356, 233) and radius 50. Note that it's BGR notation and not RGB notation.
+
+      img_circle = cv2.circle(img, (356, 233), 50, (0, 0, 255), -1) # filled circle
+
+#### Text
+To have text on the image, you need to specify the coordinates, the font, size of the text, color of the text, and thickness.
+
+      cv2.putText(img, 'Hellou', (459, 392), cv2.FONT_HERSHEY_SIMPLEX, 1.5, (0, 0, 0), 2)
+
+This is how everything looks put together:
+![Drawings on the whiteboard](./fig/whiteboard_drawings.png)
+---
+### Contours
+
+At first, when making bounding boxes, I made a mistake to which coordinates of the corners of the rectangle to use.
+
+      x1, y1, x2, y2 = cv2.boundingRect(cnt)
+      cv2.rectangle(img, (x1, y1), (x2, y2), (0, 255, 0), 2)
+This is how the bounding boxes turned out:
+![Flock bounding boxes incorrect placement](./fig/flock_boundingboxes_incorrect.png)
+
+Then I changed the last 2 parameters to w (width) and h (height) and added them up for the 
+
+![Flock bounding boxes correct placement](./fig/flock_boundingboxes.png)
